@@ -1,10 +1,19 @@
+import React, { useContext } from 'react';
+import MagicProvider from './context/MagicProvider';
+
+import Div from './components/Div'
 
 
-function App() {
+const  App = () => {
+
+
+
   return (
+    <MagicProvider>
     <div className="App">
-      <h1>Hey Yo!</h1>
+      <Div/>
     </div>
+    </MagicProvider>
   );
 }
 
