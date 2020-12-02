@@ -4,7 +4,7 @@ import Loader from '../loader';
 
 import Card from '../card';
 
-import './CardList.css';
+import './CardList.scss';
 
 const CardList = () => {
 
