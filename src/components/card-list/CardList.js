@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { MagicContext } from '../../context/MagicProvider';
 
 import Card from '../card';
+import Button from '../button';
 
 import './CardList.css';
 
@@ -13,9 +14,13 @@ const CardList = () => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        context.getResourse();
+        context.getResourse(1);
         setLoading(false)
     }, []);
+
+    const next = () => {
+        context.nextPage()
+    }
 
     return (
         <div className="cardlist_wrap">
@@ -28,6 +33,10 @@ const CardList = () => {
                                 genetics={el.genetics.names}
                                 />)
             }
+            <Button
+            text="next"
+            onClick={next}
+            />
         </div>
     )
 }
