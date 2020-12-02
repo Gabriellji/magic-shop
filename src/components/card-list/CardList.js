@@ -1,5 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { MagicContext } from '../../context/MagicProvider';
+import Loader from '../loader';
 
 import Card from '../card';
 
@@ -16,7 +17,7 @@ const CardList = () => {
     return (
         <div className="cardlist_wrap">
             {
-                context.loading ? <h1>Loading...</h1> : Object.entries(context.strains)[0][1].filter(el => !el.image.includes("no_image.png"))
+                context.loading ? <Loader /> : Object.entries(context.strains)[0][1].filter(el => !el.image.includes("no_image.png"))
                     .map((el, index) => <Card
                         key={index}
                         name={el.name}
