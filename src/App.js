@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import MagicProvider from './context/MagicProvider';
 
-import CardList from './components/card-list'
+import CardsWrapper from './components/cards-wrapper';
 
 
 const  App = () => {
@@ -9,7 +9,7 @@ const  App = () => {
   return (
     <MagicProvider>
     <div className="App">
-      <CardList/>
+      <CardsWrapper/>
     </div>
     </MagicProvider>
   );

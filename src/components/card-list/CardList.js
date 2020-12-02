@@ -38,23 +38,23 @@ const CardList = () => {
                     />)
             }
             {
-                context.strains.meta.pagination.links.previous &&
+                context.strains.data && (context.strains.meta.pagination.links.previous &&
                 <Button
                     text="previous"
                     onClick={previous}
-                />
+                />)
             }
-            <div>
+            {/* <div>
                 <span>Current page : {context.strains.meta.pagination.current_page}</span>
                 <span>Total Pages: {context.strains.meta.pagination.total_pages}</span>
-            </div>
+            </div> */}
 
             {
-                context.strains.meta.pagination.links.next &&
+                context.strains.data && (context.strains.meta.pagination.links.next &&
                 <Button
                     text="next"
                     onClick={next}
-                />
+                />)
             }
 
         </div>
