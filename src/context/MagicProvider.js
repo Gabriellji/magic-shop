@@ -6,6 +6,8 @@ export const MagicContext = React.createContext();
 const MagicProvider = props => {
 
   const [strains, setStrains] = useState([]);
+  const [loading, setLoading] = useState(true)
+  //const [data, setData] = useState([]);
 
   const _apiBase = 'https://api.otreeba.com/v1/strains?sort=-createdAt&count=30&pagination_type=page&page=1';
   //const _apiNextPage = 'http://www.cannabisreports.com/api/v1.0/strains?pagination_type=page&page='
@@ -13,36 +15,56 @@ const MagicProvider = props => {
   //const _apiBase = 'http://strainapi.evanbusse.com/Ym4KZL4/strains/search/all'
 
   const getResourse = () => {
+    setLoading(true)
     axios
       .get(_apiBase)
       .then(res => {
         setStrains(res.data)
+        setLoading(false)
       })
       .catch(error => console.log(error));
   }
 
   const nextPage = () => {
+    setLoading(true);
     const page = strains.meta.pagination.links.next;
     axios
       .get(page)
       .then(res => {
         setStrains(res.data)
+        setLoading(false)
       })
       .catch(error => console.log(error));
   }
 
   const previousPage = () => {
+    setLoading(true);
     const page = strains.meta.pagination.links.previous;
     axios
       .get(page)
       .then(res => {
         setStrains(res.data)
+        setLoading(false)
       })
       .catch(error => console.log(error));
   }
 
+  const _transformData = (obj) => {
+    return Object.entries(obj)[0][1].filter(el => !el.image.includes("no_image.png"))
+  }
+
+  // const getReadyData = () => {
+  //   axios
+  //     .get(_apiBase)
+  //     .then(res => {
+  //       const result = _transformData(res.data);
+  //       setData(result)
+  //     })
+  //     .catch(error => console.log(error));
+  // }
+
   return (
-    <MagicContext.Provider value={{ strains, getResourse, nextPage, previousPage }}>
+    <MagicContext.Provider value={{ strains, getResourse, nextPage, previousPage, loading }}>
       {props.children}
     </MagicContext.Provider>
   )

@@ -9,23 +9,22 @@ const CardList = () => {
 
     const context = useContext(MagicContext);
 
-    const [loading, setLoading] = useState(true);
-
     useEffect(() => {
         context.getResourse();
-        setLoading(false)
     }, []);
 
     return (
         <div className="cardlist_wrap">
             {
-                context.strains.data && context.strains.data
-                    .map(el => <Card
+                context.loading ? <h1>Loading...</h1> : Object.entries(context.strains)[0][1].filter(el => !el.image.includes("no_image.png"))
+                    .map((el, index) => <Card
+                        key={index}
                         name={el.name}
                         image={el.image}
                         seedCompany={el.seedCompany.name}
                         genetics={el.genetics.names}
                     />)
+                    
             }
         </div>
     );
