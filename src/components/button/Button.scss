@@ -1,0 +1,16 @@
+.btn {
+    cursor: pointer;
+    padding: .5rem;
+    font-size: 2rem;
+    border-radius: 10px;
+    outline: none;
+    color: #261b17;
+}
+
+.card_btn {
+    background-color: #ffbf00;
+    transition: all .25s ease-in-out;
+    &:hover {
+        background-color: #ff9500;
+    }
+}

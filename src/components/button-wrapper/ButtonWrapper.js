@@ -3,7 +3,7 @@ import { MagicContext } from '../../context/MagicProvider';
 import Button from '../button';
 import PageCounter from '../page-counter';
 
-import './ButtonWrapper.css';
+import './ButtonWrapper.scss';
 
 const ButtonWrapper = () => {
 
@@ -19,6 +19,7 @@ const ButtonWrapper = () => {
             {
                 context.strains.data && (context.strains.meta.pagination.links.previous &&
                     <Button
+                        className="btn previous"
                         text="previous"
                         onClick={paginatePage}
                     />)
@@ -38,6 +39,7 @@ const ButtonWrapper = () => {
             {
                 context.strains.data && (context.strains.meta.pagination.links.next &&
                     <Button
+                        className="btn next"
                         text="next"
                         onClick={paginatePage}
                     />)

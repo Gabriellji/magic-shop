@@ -24,8 +24,7 @@ const CardList = () => {
                         image={el.image}
                         seedCompany={el.seedCompany.name}
                         genetics={el.genetics.names}
-                    />)
-                    
+                    />)    
             }
         </div>
     );
