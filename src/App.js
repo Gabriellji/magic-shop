@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import MagicProvider from './context/MagicProvider';
 
-import CardList from './components/CardList'
+import CardList from './components/card-list'
 
 
 const  App = () => {

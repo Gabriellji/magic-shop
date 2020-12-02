@@ -1,8 +1,10 @@
 
 import React, { useContext, useEffect, useState } from 'react';
-import { MagicContext } from '../context/MagicProvider';
+import { MagicContext } from '../../context/MagicProvider';
 
-import Card from './Card';
+import Card from '../card';
+
+import './CardList.css';
 
 const CardList = () => {
 
@@ -16,7 +18,7 @@ const CardList = () => {
     }, []);
 
     return (
-        <div>
+        <div className="cardlist_wrap">
             {
                 context.strains.data  && context.strains.data
                     .map(el => <Card 

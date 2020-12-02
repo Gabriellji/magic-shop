@@ -7,7 +7,7 @@ const MagicProvider = props => {
 
     const [strains, setStrains] = useState([]);
 
-    const _apiBase = 'http://www.cannabisreports.com/api/v1.0/strains?page=9';
+    const _apiBase = 'https://api.otreeba.com/v1/strains?sort=-createdAt&count=50&page=1';
 
     //const _apiBase = 'http://strainapi.evanbusse.com/Ym4KZL4/strains/search/all'
 
