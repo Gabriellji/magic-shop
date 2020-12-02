@@ -3,29 +3,21 @@ import axios from 'axios';
 
 export const MagicContext = React.createContext();
 
-const initialState = {
-    magicData: 'lala',
-    data: ''
-};
-
 const MagicProvider = props => {
 
-    const [strains, setStrains] = useState(initialState);
+    const [strains, setStrains] = useState([]);
 
-    const _apiBase = 'http://www.cannabisreports.com/api/v1.0/';
+    const _apiBase = 'http://www.cannabisreports.com/api/v1.0/strains';
+
+    //const _apiBase = 'http://strainapi.evanbusse.com/Ym4KZL4/strains/search/all'
 
     const getResourse = () => {
         axios
-        .get(`${_apiBase}strains`)
+        .get(_apiBase)
         .then(res => {
-          console.log(res.data)
-            setStrains({
-              ...strains,
-              // data: res.data
-            })
+            setStrains(res.data)
         })
-
-        
+        .catch(error => console.log(error));   
     }
 
     return (

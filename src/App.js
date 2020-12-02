@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import MagicProvider from './context/MagicProvider';
 
-import Div from './components/Div'
+import Card from './components/Card'
 
 
 const  App = () => {
@@ -11,7 +11,7 @@ const  App = () => {
   return (
     <MagicProvider>
     <div className="App">
-      <Div/>
+      <Card/>
     </div>
     </MagicProvider>
   );
