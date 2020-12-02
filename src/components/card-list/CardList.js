@@ -9,10 +9,10 @@ const CardList = () => {
 
     const context = useContext(MagicContext);
 
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        context.getResourse(1);
+        context.getResourse();
         setLoading(false)
     }, []);
 
@@ -27,16 +27,8 @@ const CardList = () => {
                         genetics={el.genetics.names}
                     />)
             }
-            
-            {/* <div>
-                <span>Current page : {context.strains.meta.pagination.current_page}</span>
-                <span>Total Pages: {context.strains.meta.pagination.total_pages}</span>
-            </div> */}
-
-        
-
         </div>
-    )
-}
+    );
+};
 
 export default CardList;

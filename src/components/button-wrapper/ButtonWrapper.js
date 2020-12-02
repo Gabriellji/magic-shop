@@ -1,18 +1,17 @@
 import React, { useContext } from 'react';
 import { MagicContext } from '../../context/MagicProvider';
-import Button from '../button'
+import Button from '../button';
+import PageCounter from '../page-counter';
+
 import './ButtonWrapper.css';
 
 const ButtonWrapper = () => {
 
     const context = useContext(MagicContext);
 
-    const next = () => {
-        context.nextPage()
-    }
-
-    const previous = () => {
-        context.previousPage()
+    const paginatePage = (event) => {
+        event.target.innerText === 'next' 
+            ? context.nextPage() : context.previousPage()
     }
 
     return (
@@ -21,14 +20,26 @@ const ButtonWrapper = () => {
                 context.strains.data && (context.strains.meta.pagination.links.previous &&
                     <Button
                         text="previous"
-                        onClick={previous}
+                        onClick={paginatePage}
                     />)
             }
+            <>
+                {
+                    <PageCounter text="Current page : "
+                        info={context.strains.data && context.strains.meta.pagination.current_page} />
+                }
+            </>
+            <>
+                {
+                    <PageCounter text="Total Pages: "
+                        info={context.strains.data && context.strains.meta.pagination.total_pages} />
+                }
+            </>
             {
                 context.strains.data && (context.strains.meta.pagination.links.next &&
                     <Button
                         text="next"
-                        onClick={next}
+                        onClick={paginatePage}
                     />)
             }
         </div>

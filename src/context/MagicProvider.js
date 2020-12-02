@@ -7,14 +7,14 @@ const MagicProvider = props => {
 
   const [strains, setStrains] = useState([]);
 
-  const _apiBase = 'https://api.otreeba.com/v1/strains?sort=-createdAt&count=50&pagination_type=page&page=';
+  const _apiBase = 'https://api.otreeba.com/v1/strains?sort=-createdAt&count=30&pagination_type=page&page=1';
   //const _apiNextPage = 'http://www.cannabisreports.com/api/v1.0/strains?pagination_type=page&page='
 
   //const _apiBase = 'http://strainapi.evanbusse.com/Ym4KZL4/strains/search/all'
 
-  const getResourse = (num) => {
+  const getResourse = () => {
     axios
-      .get(`${_apiBase}${num}`)
+      .get(_apiBase)
       .then(res => {
         setStrains(res.data)
       })
@@ -40,8 +40,6 @@ const MagicProvider = props => {
       })
       .catch(error => console.log(error));
   }
-
-
 
   return (
     <MagicContext.Provider value={{ strains, getResourse, nextPage, previousPage }}>

@@ -2,7 +2,7 @@ import './Button.css';
 
 const Button = ({ text, onClick }) => (
     <button
-        onClick={() => onClick()}
+        onClick={(e) => onClick(e)}
     >{text}</button>
 )
 
