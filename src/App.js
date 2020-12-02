@@ -1,17 +1,15 @@
 import React, { useContext } from 'react';
 import MagicProvider from './context/MagicProvider';
 
-import Card from './components/Card'
+import CardList from './components/CardList'
 
 
 const  App = () => {
 
-
-
   return (
     <MagicProvider>
     <div className="App">
-      <Card/>
+      <CardList/>
     </div>
     </MagicProvider>
   );
