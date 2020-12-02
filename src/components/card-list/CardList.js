@@ -22,21 +22,41 @@ const CardList = () => {
         context.nextPage()
     }
 
+    const previous = () => {
+        context.previousPage()
+    }
+
     return (
         <div className="cardlist_wrap">
             {
-                context.strains.data  && context.strains.data
-                    .map(el => <Card 
-                                name={el.name} 
-                                image={el.image}
-                                seedCompany={el.seedCompany.name}
-                                genetics={el.genetics.names}
-                                />)
+                context.strains.data && context.strains.data
+                    .map(el => <Card
+                        name={el.name}
+                        image={el.image}
+                        seedCompany={el.seedCompany.name}
+                        genetics={el.genetics.names}
+                    />)
             }
-            <Button
-            text="next"
-            onClick={next}
-            />
+            {
+                context.strains.meta.pagination.links.previous &&
+                <Button
+                    text="previous"
+                    onClick={previous}
+                />
+            }
+            <div>
+                <span>Current page : {context.strains.meta.pagination.current_page}</span>
+                <span>Total Pages: {context.strains.meta.pagination.total_pages}</span>
+            </div>
+
+            {
+                context.strains.meta.pagination.links.next &&
+                <Button
+                    text="next"
+                    onClick={next}
+                />
+            }
+
         </div>
     )
 }

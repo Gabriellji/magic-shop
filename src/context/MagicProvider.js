@@ -31,10 +31,20 @@ const MagicProvider = props => {
       .catch(error => console.log(error));
   }
 
+  const previousPage = () => {
+    const page = strains.meta.pagination.links.previous;
+    axios
+      .get(page)
+      .then(res => {
+        setStrains(res.data)
+      })
+      .catch(error => console.log(error));
+  }
+
 
 
   return (
-    <MagicContext.Provider value={{ strains, getResourse, nextPage }}>
+    <MagicContext.Provider value={{ strains, getResourse, nextPage, previousPage }}>
       {props.children}
     </MagicContext.Provider>
   )
