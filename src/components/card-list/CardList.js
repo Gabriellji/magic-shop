@@ -1,9 +1,7 @@
-
 import React, { useContext, useEffect, useState } from 'react';
 import { MagicContext } from '../../context/MagicProvider';
 
 import Card from '../card';
-import Button from '../button';
 
 import './CardList.css';
 
@@ -18,14 +16,6 @@ const CardList = () => {
         setLoading(false)
     }, []);
 
-    const next = () => {
-        context.nextPage()
-    }
-
-    const previous = () => {
-        context.previousPage()
-    }
-
     return (
         <div className="cardlist_wrap">
             {
@@ -37,68 +27,16 @@ const CardList = () => {
                         genetics={el.genetics.names}
                     />)
             }
-            {
-                context.strains.data && (context.strains.meta.pagination.links.previous &&
-                <Button
-                    text="previous"
-                    onClick={previous}
-                />)
-            }
+            
             {/* <div>
                 <span>Current page : {context.strains.meta.pagination.current_page}</span>
                 <span>Total Pages: {context.strains.meta.pagination.total_pages}</span>
             </div> */}
 
-            {
-                context.strains.data && (context.strains.meta.pagination.links.next &&
-                <Button
-                    text="next"
-                    onClick={next}
-                />)
-            }
+        
 
         </div>
     )
 }
-
-// const Card = () => {
-//     const [strains, setStrains] = useState([]);
-//     const [loading, setLoading] = useState(true);
-
-//     const _apiBase = 'http://www.cannabisreports.com/api/v1.0/strains';
-
-//     //const _apiBase = 'http://strainapi.evanbusse.com/Ym4KZL4/strains/search/all';
-
-//     // const sliced = (obj) => Object.keys(obj).slice(0, 60).reduce((result, key) => {
-//     //     result[key] = obj[key];
-
-//     //     return result;
-//     // }, {});
-
-//     const getResourse = () => {
-//         axios
-//             .get(_apiBase)
-//             .then(res => {
-//                 //setStrains(sliced(res.data))
-//                 setStrains(res.data)
-//                 console.log(res.data.data)
-//                 setLoading(false)
-//             })
-//             .catch(error => console.log(error));
-//     }
-
-//     useEffect(() => {
-//         getResourse();
-//     }, []);
-
-
-
-//     return (
-//         <div>
-//            {/* { !loading && Object.keys(strains).map(el => <h1>{el}</h1>)} */}
-//            {!loading && strains.data.map(el => <h1>{el.name}</h1>)}
-//         </div>
-//     )
-// }
 
 export default CardList;
