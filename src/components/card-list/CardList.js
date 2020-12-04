@@ -10,9 +10,9 @@ const CardList = () => {
 
     const context = useContext(MagicContext);
 
-    useEffect(() => {
-        context.getResourse();
-    }, []);
+    // useEffect(() => {
+    //     context.getResourse();
+    // }, []);
 
     return (
         <div className="cardlist_wrap">

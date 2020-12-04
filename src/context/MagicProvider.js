@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export const MagicContext = React.createContext();
@@ -7,46 +7,42 @@ const MagicProvider = props => {
 
   const [strains, setStrains] = useState([]);
   const [loading, setLoading] = useState(true)
-  //const [data, setData] = useState([]);
 
   const _apiBase = 'https://api.otreeba.com/v1/strains?sort=-createdAt&count=30&pagination_type=page&page=1';
   //const _apiNextPage = 'http://www.cannabisreports.com/api/v1.0/strains?pagination_type=page&page='
 
   //const _apiBase = 'http://strainapi.evanbusse.com/Ym4KZL4/strains/search/all'
 
-  const getResourse = () => {
-    setLoading(true)
-    axios
-      .get(_apiBase)
-      .then(res => {
-        setStrains(res.data)
-        setLoading(false)
-      })
-      .catch(error => console.log(error));
-  }
+  useEffect(() => {
+    setLoading(true);
+    const fetchData = async () => {
+      const data = await axios.get(_apiBase);
+      setStrains(data.data);
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
 
   const nextPage = () => {
     setLoading(true);
     const page = strains.meta.pagination.links.next;
-    axios
-      .get(page)
-      .then(res => {
-        setStrains(res.data)
-        setLoading(false)
-      })
-      .catch(error => console.log(error));
+    const fetchNextPage = async () => {
+      const data = await axios.get(page)
+      setStrains(data.data)
+      setLoading(false)
+    }
+    fetchNextPage();
   }
 
   const previousPage = () => {
     setLoading(true);
     const page = strains.meta.pagination.links.previous;
-    axios
-      .get(page)
-      .then(res => {
-        setStrains(res.data)
-        setLoading(false)
-      })
-      .catch(error => console.log(error));
+    const fetchPreviousPage = async () => {
+      const { data } = await axios.get(page)
+      setStrains(data.data)
+      setLoading(false)
+    }
+    fetchPreviousPage();
   }
 
   const _transformData = (obj) => {
@@ -64,7 +60,7 @@ const MagicProvider = props => {
   // }
 
   return (
-    <MagicContext.Provider value={{ strains, getResourse, nextPage, previousPage, loading }}>
+    <MagicContext.Provider value={{ strains, nextPage, previousPage, loading }}>
       {props.children}
     </MagicContext.Provider>
   )
