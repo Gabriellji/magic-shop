@@ -8,12 +8,16 @@ const MagicProvider = props => {
   const [strains, setStrains] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const _apiBase = 'https://api.otreeba.com/v1/strains?sort=-createdAt&count=30&pagination_type=page&page=1';
+  let defaultAmount = 18;
+
   //const _apiNextPage = 'http://www.cannabisreports.com/api/v1.0/strains?pagination_type=page&page='
 
   //const _apiBase = 'http://strainapi.evanbusse.com/Ym4KZL4/strains/search/all'
 
-  useEffect(() => {
+  const getData = () => {
+    
+    const _apiBase = `https://api.otreeba.com/v1/strains?sort=-createdAt&count=${defaultAmount}&pagination_type=page&page=1`;
+
     setLoading(true);
     const fetchData = async () => {
       const data = await axios.get(_apiBase);
@@ -21,7 +25,16 @@ const MagicProvider = props => {
       setLoading(false);
     }
     fetchData();
+  }
+
+  useEffect(() => {
+    getData()
   }, []);
+
+  const changeAmount = (number) => {
+    defaultAmount = number;
+    getData();
+  };
 
   const nextPage = () => {
     setLoading(true);
@@ -46,7 +59,7 @@ const MagicProvider = props => {
   }
 
   return (
-    <MagicContext.Provider value={{ strains, nextPage, previousPage, loading }}>
+    <MagicContext.Provider value={{ strains, nextPage, previousPage, loading, changeAmount }}>
       {props.children}
     </MagicContext.Provider>
   )
