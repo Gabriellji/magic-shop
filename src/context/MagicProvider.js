@@ -6,7 +6,7 @@ export const MagicContext = React.createContext();
 const MagicProvider = props => {
 
   const [strains, setStrains] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   const _apiBase = 'https://api.otreeba.com/v1/strains?sort=-createdAt&count=30&pagination_type=page&page=1';
   //const _apiNextPage = 'http://www.cannabisreports.com/api/v1.0/strains?pagination_type=page&page='
@@ -44,20 +44,6 @@ const MagicProvider = props => {
     }
     fetchPreviousPage();
   }
-
-  const _transformData = (obj) => {
-    return Object.entries(obj)[0][1].filter(el => !el.image.includes("no_image.png"))
-  }
-
-  // const getReadyData = () => {
-  //   axios
-  //     .get(_apiBase)
-  //     .then(res => {
-  //       const result = _transformData(res.data);
-  //       setData(result)
-  //     })
-  //     .catch(error => console.log(error));
-  // }
 
   return (
     <MagicContext.Provider value={{ strains, nextPage, previousPage, loading }}>
