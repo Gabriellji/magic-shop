@@ -7,8 +7,8 @@ import './Card.scss';
 const element = <img src={shopcart} alt="shopping-cart"></img>
 const cannabis = <img src={info} alt="cannabis"></img>
 
-const Card = ({ name, image, seedCompany, genetics }) => (
-    <div className="card_wrap">
+const Card = ({ name, image, seedCompany, genetics, onClick }) => (
+    <div className="card_wrap" onClick={() => onClick()}>
         <h1 className="card_title">{name}</h1>
         <img className="card_img" src={image} alt={name}></img>
         <div className="card-text_wrap">
@@ -17,7 +17,7 @@ const Card = ({ name, image, seedCompany, genetics }) => (
             {/* <h4 className="card_text" >Genetics:</h4>
             <h3>{genetics}</h3> */}
         </div>
-        <div className="card_btn_wrap">
+        {/* <div className="card_btn_wrap">
             <Button
                 className="btn card_btn"
                 text={cannabis}
@@ -26,7 +26,7 @@ const Card = ({ name, image, seedCompany, genetics }) => (
                 className="btn card_btn"
                 text={element}
             />
-        </div>
+        </div> */}
     </div>
 )
 

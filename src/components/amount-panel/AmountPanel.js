@@ -15,17 +15,17 @@ const AmountPanel = () => {
         <div className="amount_panel">
         <Button
         className="btn amount_btn"
-        text="9"
+        text="10"
         onClick={handleClick}
         />
         <Button
         className="btn amount_btn"
-        text="18"
+        text="20"
         onClick={handleClick}
         />
         <Button
         className="btn amount_btn"
-        text="36"
+        text="40"
         onClick={handleClick}
         />
     </div>
