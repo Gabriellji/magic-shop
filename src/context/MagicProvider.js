@@ -8,7 +8,7 @@ const MagicProvider = props => {
   const [strains, setStrains] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  let defaultAmount = 18;
+  let defaultAmount = 10;
 
   //const _apiNextPage = 'http://www.cannabisreports.com/api/v1.0/strains?pagination_type=page&page='
 
