@@ -1,4 +1,4 @@
-export default [
+export const cannabisImg = [
     'https://www.cannaconnection.com/6778/amnesia-kush.jpg',
     'https://www.cannaconnection.com/8281/ak-47.jpg',
     'https://www.cannaconnection.com/6646/alaskan-ice.jpg',

@@ -12,10 +12,12 @@ const Card = ({ name, image, seedCompany, genetics }) => (
         <h1 className="card_title">{name}</h1>
         <img className="card_img" src={image} alt={name}></img>
         <div className="card-text_wrap">
-            <h3 className="card_text"><b>Seed Company:  </b><br/> {seedCompany}</h3>
-            <h3 className="card_text" ><b>Genetics: </b><br/>{genetics}</h3>
+            <h4 className="card_text">Seed Company:  </h4>
+            <h3> {seedCompany}</h3>
+            {/* <h4 className="card_text" >Genetics:</h4>
+            <h3>{genetics}</h3> */}
         </div>
-        <div>
+        <div className="card_btn_wrap">
             <Button
                 className="btn card_btn"
                 text={cannabis}
