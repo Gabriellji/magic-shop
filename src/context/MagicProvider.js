@@ -71,7 +71,8 @@ const MagicProvider = props => {
     setLoading(true);
     const fetchData = async () => {
       const data = await axios.get(`${_strainApiBase}/strains/search/race/${value}`);
-      setInfoStrains(data.data);
+      const finalData = data.data.sort(() => Math.random() - 0.5)
+      setInfoStrains(finalData);
       setLoading(false);
     }
     fetchData();
