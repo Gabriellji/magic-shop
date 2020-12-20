@@ -7,7 +7,7 @@ const MagicProvider = props => {
 
   const [strains, setStrains] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [infoStrains, setInfoStrains] = useState([]);
+  const [infoStrains, setInfoStrains] = useState('');
 
   //const strainKey = process.env.STRAIN_API_KEY;
 
@@ -16,7 +16,7 @@ const MagicProvider = props => {
   //const _apiNextPage = 'http://www.cannabisreports.com/api/v1.0/strains?pagination_type=page&page='
 
   const getData = () => {
-    
+
     const _apiBase = `https://api.otreeba.com/v1/strains?sort=-createdAt&count=${defaultAmount}&pagination_type=page&page=1`;
 
     setLoading(true);
@@ -28,17 +28,34 @@ const MagicProvider = props => {
     fetchData();
   }
 
+  const _transformApi = (obj) => {
+    let arr = [];
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        // console.log(obj[key].id)
+        arr.push({
+          name: key,
+          id:obj[key].id,
+          race:obj[key].race,
+          flavors:obj[key].flavors,
+          effects:obj[key].effects
+        })
+      }
+    }
+    return arr;
+  }
+
   const getInfoData = () => {
     const _strainApiBase = `http://strainapi.evanbusse.com/Ym4KZL4/strains/search/all`;
 
     setLoading(true);
     const fetchData = async () => {
       const data = await axios.get(_strainApiBase);
-      setInfoStrains(data.data);
+      const finalData = _transformApi(data.data);
+      setInfoStrains(finalData);
       setLoading(false);
       // const arr = strains.data;
       // const res = arr.map(el => el.name);
-      // console.log(res)
       // const oo = Object.keys(infoStrains).filter((el, i) => el.includes(arr.flat()));
       // console.log(oo)
     }
@@ -81,14 +98,15 @@ const MagicProvider = props => {
   }
 
   return (
-    <MagicContext.Provider value={{ 
-      strains, 
-      nextPage, 
-      previousPage, 
-      loading, 
+    <MagicContext.Provider value={{
+      strains,
+      nextPage,
+      previousPage,
+      loading,
       changeAmount,
       infoStrains,
-      setInfoStrains }}>
+      setInfoStrains
+    }}>
       {props.children}
     </MagicContext.Provider>
   )
