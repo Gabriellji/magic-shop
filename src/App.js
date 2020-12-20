@@ -3,9 +3,7 @@ import MagicProvider from './context/MagicProvider';
 import { Link, Route, Switch } from 'react-router-dom';
 import CardsWrapper from './components/seeds/cards-wrapper';
 
-import Button from './components/button';
-
-import "./App.scss"
+//import Button from './components/button';
 
 
 const App = () => {

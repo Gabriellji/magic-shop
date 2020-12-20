@@ -7,6 +7,7 @@
     outline: none;
     color: #261b17;
     margin: 0 .2rem;
+    background-color: #ff6b9b;
 }
 
 .card_btn {
@@ -17,12 +18,13 @@
 .card_btn, .amount_btn {
     transition: all .25s ease-in-out;
     &:hover {
-        background-color: #d24f35;
+        background-color: #ff427e;
     }
 }
 
 .amount_btn {
-    background-color: #df2323;
+    // background-color: #df2323;
+    //background-color: #ff6b9b;
     width: 60px;
     margin: .5rem;
 }

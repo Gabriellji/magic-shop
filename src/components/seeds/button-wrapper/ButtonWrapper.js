@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { MagicContext } from '../../../context/MagicProvider';
-import Button from '../../button';
+import Button from '../../reuse-components/button';
 import PageCounter from '../page-counter';
 
 import './ButtonWrapper.scss';

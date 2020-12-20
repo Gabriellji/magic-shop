@@ -28,6 +28,7 @@ const CardList = () => {
     const toggleModal = (e) => {
         setIsOpen(!isOpen);
         const clickedItem = context.strains.data[Number(e.target.id)];
+        setClicked('');
         setClicked(clickedItem);
         console.log(clicked, 'from click')
     }
