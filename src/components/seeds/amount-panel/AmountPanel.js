@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { MagicContext } from '../../context/MagicProvider';
-import Button from '../button'
+import { MagicContext } from '../../../context/MagicProvider';
+import Button from '../../reuse-components/button'
 import './AmountPanel.scss';
 
 const AmountPanel = () => {
@@ -15,17 +15,17 @@ const AmountPanel = () => {
         <div className="amount_panel">
         <Button
         className="btn amount_btn"
-        text="9"
+        text="10"
         onClick={handleClick}
         />
         <Button
         className="btn amount_btn"
-        text="18"
+        text="20"
         onClick={handleClick}
         />
         <Button
         className="btn amount_btn"
-        text="36"
+        text="40"
         onClick={handleClick}
         />
     </div>
