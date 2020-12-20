@@ -1,16 +1,16 @@
 import React, { useContext, useState } from 'react';
-import { MagicContext } from '../../context/MagicProvider';
-import Loader from '../loader';
+import { MagicContext } from '../../../context/MagicProvider';
+import Loader from '../../reuse-components/loader';
 import Modal from "react-modal";
 import Card from '../card';
-import Button from '../button';
+import Button from '../../reuse-components/button';
 import ModalCard from '../modal-card'
 
 import './CardList.scss';
 import './Modal.scss';
-import { cannabisImg } from '../../extra-data/img';
-import shopcart from '../../extra-data/img/shopping-cart.png';
-import info from '../../extra-data/img/cannabis.png';
+import { cannabisImg } from '../../../extra-data/img';
+import shopcart from '../../../extra-data/img/shopping-cart.png';
+import info from '../../../extra-data/img/cannabis.png';
 
 const element = <img src={shopcart} alt="shopping-cart"></img>
 const cannabis = <img src={info} alt="cannabis"></img>
