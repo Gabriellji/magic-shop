@@ -13,6 +13,9 @@ const MagicProvider = props => {
 
   let defaultAmount = 10;
 
+
+  const _strainApiBase = `http://strainapi.evanbusse.com/Ym4KZL4`;
+
   //const _apiNextPage = 'http://www.cannabisreports.com/api/v1.0/strains?pagination_type=page&page='
 
   const getData = () => {
@@ -32,7 +35,6 @@ const MagicProvider = props => {
     let arr = [];
     for (let key in obj) {
       if (obj.hasOwnProperty(key)) {
-        // console.log(obj[key].id)
         arr.push({
           name: key,
           id:obj[key].id,
@@ -45,26 +47,49 @@ const MagicProvider = props => {
     return arr;
   }
 
-  const getInfoData = () => {
-    const _strainApiBase = `http://strainapi.evanbusse.com/Ym4KZL4/strains/search/all`;
+//   const getResourse = async (url) => {
+//     const res = await fetch(`${_strainApiBase}${url}`);
+//     if (!res.ok) {
+//         throw new Error(`Could not fetch ${url}` +
+//             `, received ${res.status}`)
+//     }
+//     return await res.json();
+// }
 
+  const getAllStrain = () => {
     setLoading(true);
     const fetchData = async () => {
-      const data = await axios.get(_strainApiBase);
+      const data = await axios.get(`${_strainApiBase}/strains/search/all`);
       const finalData = _transformApi(data.data);
       setInfoStrains(finalData);
       setLoading(false);
-      // const arr = strains.data;
-      // const res = arr.map(el => el.name);
-      // const oo = Object.keys(infoStrains).filter((el, i) => el.includes(arr.flat()));
-      // console.log(oo)
+    }
+    fetchData();
+  }
+
+  const getStrainByRace = (value) => {
+    setLoading(true);
+    const fetchData = async () => {
+      const data = await axios.get(`${_strainApiBase}/strains/search/race/${value}`);
+      setInfoStrains(data.data);
+      setLoading(false);
+    }
+    fetchData();
+  }
+
+  const getStrainDescr = (id) => {
+    setLoading(true);
+    const fetchData = async () => {
+      const data = await axios.get(`${_strainApiBase}/strains/data/desc/${id}`);
+      setInfoStrains(data.data);
+      setLoading(false);
     }
     fetchData();
   }
 
   useEffect(() => {
     getData();
-    getInfoData();
+    //getInfoData();
     // const arr = strains.data.map(el => el.name);
     //console.log(strains.data.map(el => el.name))
     //console.log(strains.data.map((el, i) => arr.inludes()))
@@ -105,7 +130,9 @@ const MagicProvider = props => {
       loading,
       changeAmount,
       infoStrains,
-      setInfoStrains
+      setInfoStrains,
+      getStrainByRace,
+      getStrainDescr
     }}>
       {props.children}
     </MagicContext.Provider>
