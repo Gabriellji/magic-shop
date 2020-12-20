@@ -23,10 +23,13 @@ const CardList = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [clicked, setClicked] = useState('');
 
+    console.log(clicked);
+
     const toggleModal = (e) => {
         setIsOpen(!isOpen);
         const clickedItem = context.strains.data[Number(e.target.id)];
         setClicked(clickedItem);
+        console.log(clicked, 'from click')
     }
 
     return (
@@ -53,7 +56,8 @@ const CardList = () => {
                 closeTimeoutMS={500}
             >
                 {
-                    <>
+
+                    clicked && <>
                         <ModalCard
                             name={clicked.name}
                             image={clicked.image}
@@ -72,8 +76,11 @@ const CardList = () => {
                         </div>
                     </>
                 }
-                <button onClick={toggleModal}>Close modal</button>
+                <Button 
+                text="Close modal"
+                onClick={toggleModal}/>
             </Modal>
+           { console.log(clicked, 'from div')}
         </div>
     );
 };
