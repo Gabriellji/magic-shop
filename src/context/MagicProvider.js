@@ -7,12 +7,13 @@ const MagicProvider = props => {
 
   const [strains, setStrains] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [infoStrains, setInfoStrains] = useState([]);
+
+  //const strainKey = process.env.STRAIN_API_KEY;
 
   let defaultAmount = 10;
 
   //const _apiNextPage = 'http://www.cannabisreports.com/api/v1.0/strains?pagination_type=page&page='
-
-  //const _apiBase = 'http://strainapi.evanbusse.com/Ym4KZL4/strains/search/all'
 
   const getData = () => {
     
@@ -27,8 +28,29 @@ const MagicProvider = props => {
     fetchData();
   }
 
+  const getInfoData = () => {
+    const _strainApiBase = `http://strainapi.evanbusse.com/Ym4KZL4/strains/search/all`;
+
+    setLoading(true);
+    const fetchData = async () => {
+      const data = await axios.get(_strainApiBase);
+      setInfoStrains(data.data);
+      setLoading(false);
+      // const arr = strains.data;
+      // const res = arr.map(el => el.name);
+      // console.log(res)
+      // const oo = Object.keys(infoStrains).filter((el, i) => el.includes(arr.flat()));
+      // console.log(oo)
+    }
+    fetchData();
+  }
+
   useEffect(() => {
-    getData()
+    getData();
+    getInfoData();
+    // const arr = strains.data.map(el => el.name);
+    //console.log(strains.data.map(el => el.name))
+    //console.log(strains.data.map((el, i) => arr.inludes()))
   }, []);
 
   const changeAmount = (number) => {
@@ -59,7 +81,14 @@ const MagicProvider = props => {
   }
 
   return (
-    <MagicContext.Provider value={{ strains, nextPage, previousPage, loading, changeAmount }}>
+    <MagicContext.Provider value={{ 
+      strains, 
+      nextPage, 
+      previousPage, 
+      loading, 
+      changeAmount,
+      infoStrains,
+      setInfoStrains }}>
       {props.children}
     </MagicContext.Provider>
   )

@@ -47,6 +47,15 @@ const CardList = () => {
                             seedCompany={el.seedCompany.name}
                         />))
             }
+            {/* {
+                context.loading ? console.log(context.strains.data
+                .map(el => (
+                    context.infoStrains
+                    .filter(elem => (
+                        elem.
+                    ))
+                )))
+            } */}
             <Modal
                 isOpen={isOpen}
                 onRequestClose={toggleModal}
