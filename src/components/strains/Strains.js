@@ -6,22 +6,11 @@ const Strains = () => {
 
     const context = useContext(MagicContext);
 
-    const [items, setItems] = useState('');
     const [start, setStart] = useState(0);
     const [limit, setLimit] = useState(10);
 
-    // const limit = 10;
-
-    // useEffect(() => {
-    //     context.getStrainByRace('Sativa')
-    // }, [])
-    let arr =[];
     const handleClick = async (e) => {
         await context.getStrainByRace(e.target.innerText);
-        // context.infoStrains.sort(() => Math.random() - 0.5).slice(0, limit).map(el => {
-        //     return arr.push(el)
-        //  });
-        //  setItems(arr)
     }
 
     const loadMore = () => {

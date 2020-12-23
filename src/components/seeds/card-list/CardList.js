@@ -21,16 +21,16 @@ const CardList = () => {
 
     const context = useContext(MagicContext);
     const [isOpen, setIsOpen] = useState(false);
-    const [clicked, setClicked] = useState('');
+    const [clicked, setClicked] = useState();
 
     console.log(clicked);
 
-    const toggleModal = (e) => {
+    const toggleModal = (i) => {
         setIsOpen(!isOpen);
-        const clickedItem = context.strains.data[Number(e.target.id)];
-        setClicked('');
-        setClicked(clickedItem);
-        console.log(clicked, 'from click')
+        if (!isOpen) {
+            const clickedItem = context.strains.data[i];
+            setClicked(clickedItem);
+        }
     }
 
     return (
@@ -41,7 +41,7 @@ const CardList = () => {
                         ? el.image = cannabisImg[Math.floor(Math.random() * cannabisImg.length)]
                         : <Card
                             id={index}
-                            onClick={toggleModal}
+                            onClick={() => toggleModal(index)}
                             key={index}
                             name={el.name}
                             image={el.image}
@@ -86,11 +86,11 @@ const CardList = () => {
                         </div>
                     </>
                 }
-                <Button 
-                text="Close modal"
-                onClick={toggleModal}/>
+                <Button
+                    text="Close modal"
+                    onClick={toggleModal} />
             </Modal>
-           { console.log(clicked, 'from div')}
+            { console.log(clicked, 'from div')}
         </div>
     );
 };

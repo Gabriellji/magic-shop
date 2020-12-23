@@ -1,3 +1,5 @@
+import './StrainCard.scss';
+
 const StrainCard = ({ name, race }) => (
     <div className="strain-card_wrap">
         <h1>{name}</h1>
